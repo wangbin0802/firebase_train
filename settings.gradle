@@ -1,0 +1,2 @@
+rootProject.name='FirebaseTrain'
+include ':app'
