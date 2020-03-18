@@ -1,0 +1,25 @@
+# Built application files
+build/
+gradle/
+gradlew
+gradlew.bat
+local.properties
+*.iml
+obj/
+
+# Android Studio files
+.gradle/
+.idea/
+
+# Modules
+
+# OS-specific files
+._*
+.DS_Store
+.DS_Store?
+.Trashes
+.Spotlight-V100
+Thumbs.db
+ehthumbs.db
+
+FirebaseTrain/
