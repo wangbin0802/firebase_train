@@ -9,8 +9,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.*
 import com.stareme.firebase.firestore.NearBy
 import com.stareme.firebase.firestore.User
 
@@ -48,13 +49,16 @@ class FirstFragment : Fragment() {
         val desTv: TextView = view.findViewById(R.id.textview_first)
 
         saveBtn.setOnClickListener {
-            mDocRef.set(User(nameView.text.toString(), ageView.text.toString().toInt()))
-                .addOnSuccessListener {
-                    Log.d("FirstFragment", "save success......")
-                }
-                .addOnFailureListener {
-                    Log.d("FirstFragment", "save failed......$it")
-                }
+//            mDocRef.set(User(nameView.text.toString(), ageView.text.toString().toInt()))
+//                .addOnSuccessListener {
+//                    Log.d("FirstFragment", "save success......")
+//                    Toast.makeText(context, "save success", Toast.LENGTH_LONG).show()
+//                }
+//                .addOnFailureListener {
+//                    Log.d("FirstFragment", "save failed......$it")
+//                    Toast.makeText(context, "save failed", Toast.LENGTH_LONG).show()
+//                }
+            mDocRef.update("age", FieldValue.increment(10))
         }
 
         val docRef = FirebaseFirestore.getInstance().collection("michat").document("nearby")
@@ -64,12 +68,40 @@ class FirstFragment : Fragment() {
                     val result = it.toObject(NearBy::class.java)
                     Log.d("FirstFragment", "fetch success......$result")
                     desTv.text = "fetch result:$result"
+                    Toast.makeText(context, "fetch success", Toast.LENGTH_LONG).show()
                 }
             }
-
                 .addOnFailureListener {
                     Log.d("FirstFragment", "fetch failed......$it")
+                    Toast.makeText(context, "fetch failed", Toast.LENGTH_LONG).show()
                 }
         }
+
+        // 监听某一document的变化
+        docRef.addSnapshotListener(MetadataChanges.EXCLUDE, object : EventListener<DocumentSnapshot>{
+            override fun onEvent(documentSnapshot: DocumentSnapshot?, exception: FirebaseFirestoreException?) {
+                val result = documentSnapshot?.toObject(NearBy::class.java)
+                Log.d("FirstFragment", "onEvent listener result:$result")
+                desTv.text = "fetch result:$result"
+            }
+
+        })
+
+        // 查询方式获得结果
+        FirebaseFirestore.getInstance().collection("michat")
+            .whereEqualTo("alias", "test").get()
+            .addOnSuccessListener {
+                Log.d("FirstFragment", "query success result:$it")
+                it.forEach { queryDocumentSnapshot ->
+                    Log.d("FirstFragment", "query success result:$queryDocumentSnapshot")
+                }
+            }
+            .addOnFailureListener {
+                Log.d("FirstFragment", "query failed result:$it")
+            }
+
+        // 设置文档
+        FirebaseFirestore.getInstance().collection("michat2").document("test")
+            .set(User("lady", 18))
     }
 }
