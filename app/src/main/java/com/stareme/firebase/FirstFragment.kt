@@ -49,16 +49,18 @@ class FirstFragment : Fragment() {
         val desTv: TextView = view.findViewById(R.id.textview_first)
 
         saveBtn.setOnClickListener {
-//            mDocRef.set(User(nameView.text.toString(), ageView.text.toString().toInt()))
-//                .addOnSuccessListener {
-//                    Log.d("FirstFragment", "save success......")
-//                    Toast.makeText(context, "save success", Toast.LENGTH_LONG).show()
-//                }
-//                .addOnFailureListener {
-//                    Log.d("FirstFragment", "save failed......$it")
-//                    Toast.makeText(context, "save failed", Toast.LENGTH_LONG).show()
-//                }
-            mDocRef.update("age", FieldValue.increment(10))
+            mDocRef.set(User(nameView.text.toString(), ageView.text.toString().toInt()))
+                .addOnSuccessListener {
+                    Log.d("FirstFragment", "save success......")
+                    Toast.makeText(context, "save success", Toast.LENGTH_LONG).show()
+                }
+                .addOnFailureListener {
+                    Log.d("FirstFragment", "save failed......$it")
+                    Toast.makeText(context, "save failed", Toast.LENGTH_LONG).show()
+                }
+//            mDocRef.update("age", FieldValue.increment(10))
+            // 更新字段age 数据
+//            mDocRef.update("age", 40)
         }
 
         val docRef = FirebaseFirestore.getInstance().collection("michat").document("nearby")
@@ -92,16 +94,12 @@ class FirstFragment : Fragment() {
             .whereEqualTo("alias", "test").get()
             .addOnSuccessListener {
                 Log.d("FirstFragment", "query success result:$it")
-                it.forEach { queryDocumentSnapshot ->
-                    Log.d("FirstFragment", "query success result:$queryDocumentSnapshot")
+                it.forEachIndexed() { indexed, queryDocumentSnapshot ->
+                    Log.d("FirstFragment", "query success result $indexed:$queryDocumentSnapshot")
                 }
             }
             .addOnFailureListener {
                 Log.d("FirstFragment", "query failed result:$it")
             }
-
-        // 设置文档
-        FirebaseFirestore.getInstance().collection("michat2").document("test")
-            .set(User("lady", 18))
     }
 }
