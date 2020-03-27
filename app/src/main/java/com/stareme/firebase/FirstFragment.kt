@@ -63,7 +63,7 @@ class FirstFragment : Fragment() {
 //            mDocRef.update("age", 40)
         }
 
-        val docRef = FirebaseFirestore.getInstance().collection("michat").document("nearby")
+        val docRef = FirebaseFirestore.getInstance().document("michat/nearby")
         fetchBtn.setOnClickListener {
             docRef.get().addOnSuccessListener {
                 if (it.exists()) {
