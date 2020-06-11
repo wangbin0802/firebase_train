@@ -8,7 +8,7 @@ local.properties
 obj/
 
 # Android Studio files
-.gradle
+.gradle/
 .idea
 
 # Modules
