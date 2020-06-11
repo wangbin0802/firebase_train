@@ -32,6 +32,7 @@ class ScopedStorageActivity : AppCompatActivity() {
     private lateinit var legacyReadExternalFileBtn: Button
     private lateinit var safReadExternalFileBtn: Button
     private lateinit var safWriteExternalFileBtn: Button
+    private lateinit var legacyReadExternalMediaFileBtn: Button
     private lateinit var readImg: ImageView
 
     companion object {
@@ -82,9 +83,15 @@ class ScopedStorageActivity : AppCompatActivity() {
         legacyReadExternalFileBtn = findViewById(R.id.legacyReadExternalFileBtn)
         legacyReadExternalFileBtn.setOnClickListener {
             if (checkStorePermission(this)) {
-                // 读取外部公有目录,传统方式
+                // 读取外部共享目录,传统方式
                 testReadExternalFile()
             }
+        }
+
+        legacyReadExternalMediaFileBtn = findViewById(R.id.legacyReadMediaFileBtn)
+        legacyReadExternalMediaFileBtn.setOnClickListener {
+            // 读取外部共享媒体目录,传统方式
+            readMediaUseRawFile()
         }
 
         safReadExternalFileBtn = findViewById(R.id.safReadExternalFileBtn)
@@ -121,11 +128,19 @@ class ScopedStorageActivity : AppCompatActivity() {
         val file = File(
             Environment.getExternalStorageDirectory().absolutePath
                     + File.separator + Environment.DIRECTORY_PICTURES + File.separator + APP_FOLDER_NAME,
-//            "1591882433780.png"
             "test.txt"
         )
         Log.d("ScopedStorageActivity", "${file.path}")
         Log.d("ScopedStorageActivity", "test read external content:${file.readText()}")
+    }
+
+    private fun readMediaUseRawFile() {
+        val file = File(
+            Environment.getExternalStorageDirectory().absolutePath
+                    + File.separator + Environment.DIRECTORY_PICTURES + File.separator + APP_FOLDER_NAME,
+            "rebase.png")
+        Log.d("ScopedStorageActivity", "${file.path}")
+        showImage(Uri.fromFile(file))
     }
 
     private fun selectFileUseSAF() {
