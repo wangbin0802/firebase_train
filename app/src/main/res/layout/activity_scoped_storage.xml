@@ -26,4 +26,96 @@
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
+    <Button
+        android:id="@+id/requestPermissionBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="请求外部存储权限"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/tvReadExternalStorageState"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <Button
+        android:id="@+id/writeToSdcardBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="MediaStore向外部存储媒体文件"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/requestPermissionBtn"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <Button
+        android:id="@+id/readExternalFileBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="MediaStore查询外部存储媒体文件"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/writeToSdcardBtn"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <Button
+        android:id="@+id/legacyReadExternalFileBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="传统FilePath获取外部存储数据"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/readExternalFileBtn"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <Button
+        android:id="@+id/safReadExternalFileBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="SAF查看外部普通文件"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/legacyReadExternalFileBtn"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <Button
+        android:id="@+id/safWriteExternalFileBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:text="SAF创建外部普通文件"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/safReadExternalFileBtn"
+        app:layout_constraintVertical_chainStyle="spread"/>
+
+    <ImageView
+        android:id="@+id/read_img"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/safWriteExternalFileBtn"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
