@@ -121,6 +121,7 @@ class ScopedStorageActivity : AppCompatActivity() {
         val file = File(
             Environment.getExternalStorageDirectory().absolutePath
                     + File.separator + Environment.DIRECTORY_PICTURES + File.separator + APP_FOLDER_NAME,
+//            "1591882433780.png"
             "test.txt"
         )
         Log.d("ScopedStorageActivity", "${file.path}")
