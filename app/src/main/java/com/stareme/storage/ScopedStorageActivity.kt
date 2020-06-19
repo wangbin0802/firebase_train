@@ -145,7 +145,7 @@ class ScopedStorageActivity : AppCompatActivity() {
 
     private fun selectFileUseSAF() {
         val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
-            type = "application/*"
+            type = "text/plain"
             // 我们需要使用ContentResolver.openFileDescriptor读取数据
             addCategory(Intent.CATEGORY_OPENABLE)
         }
