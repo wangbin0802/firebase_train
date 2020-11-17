@@ -9,7 +9,7 @@ obj/
 
 # Android Studio files
 .gradle/
-.idea
+.idea/
 
 # Modules
 
@@ -21,3 +21,15 @@ obj/
 .Spotlight-V100
 Thumbs.db
 ehthumbs.db
+
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+/build
+/captures
+.externalNativeBuild
