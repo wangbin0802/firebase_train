@@ -15,6 +15,7 @@
         tools:context="com.stareme.livedata.LiveDataActivity">
 
         <TextView
+            android:id="@+id/timeTv"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -22,6 +23,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{Long.toString(viewmodel.currentTime)}"/>
+
+        <TextView
+            android:id="@+id/cacheTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/timeTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:text="@{viewmodel.cacheData}"/>
+
+        <Button
+            android:id="@+id/fetch_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/cacheTv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="20dp"
+            android:onClick="@{() -> viewmodel.onRefresh()}"
+            android:text="Fetch new data"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
