@@ -1,15 +1,17 @@
 package com.stareme.livedata
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.liveData
+import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
+import java.math.BigDecimal
 
 class DefaultDataSource : DataSource {
     private val _cachedData = MutableLiveData("This is old data")
     override val cachedValue: LiveData<String> = _cachedData
+
+    override val stockLiveData = StockLiveData("stock")
+
 
     override fun getCurrentTime(): LiveData<Long> {
         return liveData {
@@ -39,6 +41,8 @@ interface DataSource {
     fun getCurrentTime(): LiveData<Long>
 
     val cachedValue: LiveData<String>
+
+    val stockLiveData: StockLiveData
 
     suspend fun fetchNewData()
 }

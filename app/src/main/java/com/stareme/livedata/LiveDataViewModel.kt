@@ -1,5 +1,6 @@
 package com.stareme.livedata
 
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -13,6 +14,14 @@ class LiveDataViewModel(private val dataSource: DataSource) : ViewModel() {
     fun onRefresh() {
         viewModelScope.launch {
             dataSource.fetchNewData()
+        }
+    }
+
+    val stockLiveData = dataSource.stockLiveData
+
+    fun transform() {
+        Transformations.map(stockLiveData) {
+
         }
     }
 }
