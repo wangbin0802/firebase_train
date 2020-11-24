@@ -4,9 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data >
+        <import type="com.stareme.livedata.LiveDataViewModel"/>
         <variable
             name="viewmodel"
-            type="com.stareme.livedata.LiveDataViewModel" />
+            type="LiveDataViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +33,7 @@
             app:layout_constraintTop_toBottomOf="@+id/timeTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""/>
+            android:text="@{viewmodel.stockLiveData}"/>
 
         <TextView
             android:id="@+id/cacheTv"
@@ -52,7 +53,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="20dp"
-            android:onClick="@{() -> viewmodel.onRefresh()}"
+            android:onClick="@{(v) -> viewmodel.onRefresh(v)}"
             android:text="Fetch new data"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

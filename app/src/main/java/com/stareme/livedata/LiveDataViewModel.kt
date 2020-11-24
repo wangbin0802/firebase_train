@@ -1,9 +1,8 @@
 package com.stareme.livedata
 
-import androidx.lifecycle.Transformations
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewModelScope
+import android.util.Log
+import android.view.View
+import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
 class LiveDataViewModel(private val dataSource: DataSource) : ViewModel() {
@@ -11,18 +10,15 @@ class LiveDataViewModel(private val dataSource: DataSource) : ViewModel() {
 
     val cacheData = dataSource.cachedValue
 
-    fun onRefresh() {
+    fun onRefresh(view: View) {
+        Log.d("LiveDataViewModel", "view:$view")
         viewModelScope.launch {
             dataSource.fetchNewData()
         }
     }
 
-    val stockLiveData = dataSource.stockLiveData
-
-    fun transform() {
-        Transformations.map(stockLiveData) {
-
-        }
+    val stockLiveData = dataSource.stockLiveData.map {
+        "$it"
     }
 }
 
