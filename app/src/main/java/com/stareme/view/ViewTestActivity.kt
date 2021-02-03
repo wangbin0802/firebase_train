@@ -50,6 +50,14 @@ class ViewTestActivity : AppCompatActivity() {
             val file = File(externalFilesDir, "michat.apk")
             installApk(file)
         }
+
+        findViewById<Button>(R.id.button3).setOnClickListener {
+            val intent = Intent()
+            intent.action = ACTION_VIEW
+            intent.data = Uri.parse("dragonplay://crazykart/main")
+            intent.setPackage("dp.alldrift.chs.wifi")
+            startActivity(intent)
+        }
     }
 
 

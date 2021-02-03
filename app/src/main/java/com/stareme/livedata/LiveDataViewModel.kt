@@ -28,5 +28,4 @@ object LiveDataFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return LiveDataViewModel(dataSource) as T
     }
-
 }
