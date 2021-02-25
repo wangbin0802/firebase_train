@@ -7,18 +7,25 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.stareme.firebase.R
+import com.stareme.injection.*
 
 
 class SpanActivity : AppCompatActivity() {
+    @AutoWired private var userInfo: UserInfo? = null
+    @BindView(R.id.span_tv) var spanTv: TextView? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_span)
 
-        val spanTv = findViewById<TextView>(R.id.span_tv)
+        AutoWiredProcess.bind(this)
+        ButterKnifeProcess.bind(this)
+
+        Log.d("SpanActivity", "onCreate user info:${userInfo}")
 
         val stringBuilder = StringBuilder()
         val firstPartSpan = "This is first part"
@@ -36,7 +43,7 @@ class SpanActivity : AppCompatActivity() {
             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
         )
 //        spanTv.text = spannableString
-        spanTv.text = getSmallWidth().toString()
+        spanTv?.text = getSmallWidth().toString()
     }
 
     private fun getSmallWidth(): Float {
