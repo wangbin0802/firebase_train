@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <EditText
+        android:id="@+id/verifyCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+    </EditText>
+
+    <Button
+        android:id="@+id/verfiy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开始验证"
+        app:layout_constraintTop_toBottomOf="@+id/verifyCode"/>
+
+    <Button
+        android:id="@+id/sendSmsCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发送短信验证码"
+        app:layout_constraintTop_toBottomOf="@+id/verfiy"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

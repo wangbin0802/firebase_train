@@ -14,21 +14,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.stareme.spantext.SpanActivity">
+        <activity
+            android:name="com.stareme.phonauth.PhoneAuthActivity"
+            android:label="@string/title_activity_phone_auth"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.stareme.spantext.SpanActivity" />
         <activity android:name="com.stareme.storage.ScopedStorageActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.stareme.view.ViewTestActivity">
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity android:name="com.stareme.view.ViewTestActivity"></activity>
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -39,7 +43,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_provider_paths" />
         </provider>
-
     </application>
 
 </manifest>
