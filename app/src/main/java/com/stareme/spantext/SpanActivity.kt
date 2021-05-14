@@ -1,7 +1,10 @@
 package com.stareme.spantext
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.graphics.Point
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
@@ -9,10 +12,14 @@ import android.text.Spanned
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.michatapp.michat_authorization.factory.ApiFactory
 import com.stareme.firebase.R
 import com.stareme.injection.*
+import com.michatapp.michat_authorization.api.IAppStatusListener
 
 
 class SpanActivity : AppCompatActivity() {
@@ -44,6 +51,35 @@ class SpanActivity : AppCompatActivity() {
         )
 //        spanTv.text = spannableString
         spanTv?.text = getSmallWidth().toString()
+
+        findViewById<Button>(R.id.btn).setOnClickListener {
+//            jumpToWhatsapp()
+            getAppInfoApi()
+        }
+
+
+    }
+
+    private fun getAppInfoApi() {
+        val appInfoApi = ApiFactory.getAppInfoApi()
+        appInfoApi.setAppStatusListener(this, object : IAppStatusListener {
+            override fun onAppStatus(logStatus: Int) {
+                Log.d("MainActivity", "onAppStatus:$logStatus")
+                Toast.makeText(this@SpanActivity, "app login status:$logStatus", Toast.LENGTH_LONG)
+                    .show()
+            }
+        })
+    }
+
+    private fun jumpToWhatsapp() {
+        val sendIntent = Intent("android.intent.action.MAIN")
+        sendIntent.action = Intent.ACTION_VIEW
+        sendIntent.setPackage("com.whatsapp")
+        val url = "https://api.whatsapp.com/send?phone=+6584936409&text=自动跳转到whatsapp会话内容"
+        sendIntent.data = Uri.parse(url)
+        if (sendIntent.resolveActivity(packageManager) != null) {
+            startActivity(sendIntent)
+        }
     }
 
     private fun getSmallWidth(): Float {
