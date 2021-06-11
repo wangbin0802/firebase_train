@@ -4,9 +4,10 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleOwner
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -20,8 +21,8 @@ class PhoneAuthActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
 
-    private var phoneNumber = "+1 658-435-7416"
-//    private var phoneNumber = "+65 84357416"
+//    private var phoneNumber = "+1 658-435-7416"
+    private var phoneNumber = "+65 84357416"
     private var credential: PhoneAuthCredential? = null
     private var storedVerificationId: String? = null
     private var refreshToken: PhoneAuthProvider.ForceResendingToken? = null
@@ -56,6 +57,13 @@ class PhoneAuthActivity : AppCompatActivity() {
                 signInWithPhoneAuthCredential(credential!!)
             }
         }
+
+        lifecycle.addObserver(object : LifecycleEventObserver {
+            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+
+            }
+
+        })
     }
 
     // [START phone_auth_callbacks]
