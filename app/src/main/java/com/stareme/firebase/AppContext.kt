@@ -20,7 +20,6 @@ class AppContext: MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         application = this
-        PowerUtils.listenPower()
     }
 
 
